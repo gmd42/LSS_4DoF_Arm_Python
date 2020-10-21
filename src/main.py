@@ -36,8 +36,34 @@ all_Servo.append(elbow)
 all_Servo.append(wrist)
 all_Servo.append(claw)
 
+#Go to home position (currently 0)
 def home():
 	for x in all_Servo:
 		x.move(0)
 
+#Make all servos limp
+def estop():
+	for x in all_Servo:
+		x.limp()
+
+
+for x in all_Servo:
+	x.setMaxSpeed(30)
+	x.setAngularAcceleration(10)
+
 home()
+time.sleep(10)
+base.move(100)
+time.sleep(5)
+estop()
+
+
+# Destroy objects
+del base
+del shoulder
+del elbow
+del wrist
+del claw
+
+# Destroy the bus
+lss.closeBus()
