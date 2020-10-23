@@ -9,6 +9,8 @@ import time
 import serial
 import pynput
 
+from os import system, name 
+
 # Import LSS library
 import lss
 import lss_const as lssc
@@ -34,7 +36,18 @@ all_Servo.append(base)
 all_Servo.append(shoulder)
 all_Servo.append(elbow)
 all_Servo.append(wrist)
-all_Servo.append(claw)
+#all_Servo.append(claw)
+
+# define our clear function 
+def clear(): 
+  
+    # for windows 
+    if name == 'nt': 
+        _ = system('cls') 
+  
+    # for mac and linux(here, os.name is 'posix') 
+    else: 
+        _ = system('clear') 
 
 #Go to home position (currently 0)
 def home():
@@ -46,16 +59,73 @@ def estop():
 	for x in all_Servo:
 		x.limp()
 
+#Prints the position of each servo
+def printLocation():
+	for x in all_Servo:
+		print(x.getPosition(),"\n")
 
+#Waits until the arm has stopped moving
+def holdOn():
+	done = 0
+	while(done == 0):
+		for x in all_Servo:
+			print(x.getSpeedPulse())
+			if (int(x.getSpeed()) == 0):
+				done = 1
+			else:
+				done = 0
+				break
+
+#This function should move the arm to the next sequence
+#Will need to create a datastructre to hold the sequences easily
+
+#def stepPosition():
+
+#Set the maximum speed and acceleration
 for x in all_Servo:
 	x.setMaxSpeed(30)
 	x.setAngularAcceleration(10)
 
+#####I am ugly delete me ASAP!####
+
+holdOn()
 home()
-time.sleep(10)
-base.move(100)
-time.sleep(5)
-estop()
+
+holdOn()
+base.move(-845)
+shoulder.move(59)
+elbow.move(391)
+wrist.move(75)
+
+holdOn()
+base.move(-845)
+wrist.move(97)
+
+holdOn()
+elbow.move(288)
+shoulder.move(194)
+
+
+holdOn()
+base.move(-845)
+shoulder.move(59)
+elbow.move(391)
+wrist.move(75)
+
+holdOn()
+home()
+
+####End of disgusting pile of code####
+
+#Main loop
+exit = 0
+while(exit == 0):
+	clear()
+	printLocation()
+	time.sleep(.5)
+	#holdOn()
+	#stepPosition()
+
 
 
 # Destroy objects
