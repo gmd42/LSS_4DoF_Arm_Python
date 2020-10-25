@@ -34,7 +34,7 @@ class motion():
 			print(x.getPosition(),"\n")
 
 	#Waits until the arm has stopped moving
-	def holdOn():
+	def holdOn(self):
 		done = 0
 		while(done == 0):
 			for x in self.all_Servo:
