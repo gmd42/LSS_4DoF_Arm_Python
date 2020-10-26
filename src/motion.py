@@ -13,8 +13,8 @@ class motion():
 			lss.LSS(i).setAngularAcceleration(10)
 		self.positions =[\
 		[-845, 59, 391, 75],\
-		[-845, None, None, 97],
-		[-None, 194, 288, None],
+		[-845, None, None, 97],\
+		[-None, 194, 288, None],\
 		[-845, 59, 391, 75]\
 		]
 
