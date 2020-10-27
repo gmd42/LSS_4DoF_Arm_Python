@@ -43,18 +43,26 @@ def clear():
 
 #Main loop
 mt.start()
+time.sleep(5)
 exit = 0
 counter = 0
-max_steps = 4
+max_steps = mt.getNumPositions()
+
+
 while(exit == 0):
 	clear()
-	printLocation()
+	mt.printLocation()
 	time.sleep(.5)
-	mt.stepPosition(1 + (counter % max_steps))
-	counter += 1
+	if(mt.holdOn() == False):
+		mt.stepPosition(1 + (counter % max_steps))
+		counter += 1
+	if (counter >= max_steps):
+		exit = 1
+
+mt.end()
+# Destroy the bus
+mt.lss.closeBus()
 
 # Destroy objects
 del mt
 
-# Destroy the bus
-mt.lss.closeBus()

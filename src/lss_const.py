@@ -119,6 +119,13 @@ LSS_ActionAngularAcceleration = "AA"
 LSS_ActionAngularDeceleration = "AD"
 LSS_ActionEnableMotionControl = "EM"
 
+# Commands - modifiers
+LSS_ModifierSpeed = "S"
+LSS_ModifierSpeedInDegrees = "SD"
+LSS_ModifierTimedMove = "T"
+LSS_ModifierCurrentHold = "CH"
+LSS_ModifierCurrentLimp = "CL"
+
 # Commands - queries
 LSS_QueryStatus = "Q"
 LSS_QueryOriginOffset = "QO"

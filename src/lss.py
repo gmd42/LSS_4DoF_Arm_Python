@@ -36,6 +36,17 @@ def genericWrite(id, cmd, param = None):
 		LSS.bus.write((lssc.LSS_CommandStart + str(id) + cmd + str(param) + lssc.LSS_CommandEnd).encode())
 	return True
 
+def genericModWrite(id, cmd, param = None, mod = None, value = None):
+	if LSS.bus is None:
+		return False
+	#if param is None:
+	#	LSS.bus.write((lssc.LSS_CommandStart + str(id) + cmd + lssc.LSS_CommandEnd).encode())
+	#elif mod is None:
+	#	LSS.bus.write((lssc.LSS_CommandStart + str(id) + cmd + str(param) + lssc.LSS_CommandEnd).encode())
+	#else:
+	LSS.bus.write((lssc.LSS_CommandStart + str(id) + cmd + str(param) + mod + str(value) + lssc.LSS_CommandEnd).encode())
+	return True
+
 # Read an integer result
 def genericRead_Blocking_int(id, cmd):
 	if LSS.bus is None:
@@ -138,6 +149,9 @@ class LSS:
 	def moveRelative(self, delta):
 		return (genericWrite(self.servoID, lssc.LSS_ActionMoveRelative, delta))
 	
+	def moveCL(self, pos, current):
+		return (genericModWrite(self.servoID, lssc.LSS_ActionMove, pos, lssc.LSS_ModifierCurrentLimp, current))
+
 	def wheel(self, speed):
 		return (genericWrite(self.servoID, lssc.LSS_ActionWheel, speed))
 	
