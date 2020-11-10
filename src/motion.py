@@ -42,6 +42,11 @@ class motion():
 		for x in self.all_Servo:
 			x.limp()
 
+	#Make all servos freeze
+	def freeze(self):
+		for x in self.all_Servo:
+			x.hold()
+
 	#Prints the position of each servo
 	def printLocation(self):
 		for x in self.all_Servo:
