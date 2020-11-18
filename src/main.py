@@ -6,6 +6,7 @@
 
 # Import required liraries
 import time
+import sys
 import serial
 import pynput
 
@@ -15,13 +16,45 @@ from os import system, name
 import lss
 import lss_const as lssc
 
+# for contact sensor's digital input
+import RPi.GPIO as GPIO
+import time
+
+
+####### example code for GPIO input ######
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(13,GPIO.OUT) # board pin 10
+try:
+	while True:
+		'''
+		time.sleep(0.5)
+		print("Reading...")
+		GPIO.output(16,1)
+		print("on")
+		time.sleep(0.5)
+		GPIO.output(16,0)
+		print("off")
+		'''	
+		time.sleep(0.5)
+		if GPIO.input(13):
+			print("off")
+		else:
+			print("on")
+except KeyboardInterrupt:
+	print("STOP")
+finally:
+	print("cleanup")
+	GPIO.cleanup() # you MUST do GPIO cleanup whenever main.py ends
+	sys.exit(0)
+##### end of GPIO input exmaple ##############
 
 # for our arm's movement
 from motion import motion
 
+
 # Constants
-#CST_LSS_Port = "/dev/ttyUSB0"		# For Linux/Unix platforms
-CST_LSS_Port = "COM3"				# For windows platforms
+CST_LSS_Port = "/dev/ttyUSB0"		# For Linux/Unix platforms
+# CST_LSS_Port = "COM1"				# For windows platforms
 CST_LSS_Baud = lssc.LSS_DefaultBaud
 
 # Create and open a serial port
