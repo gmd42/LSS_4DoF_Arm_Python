@@ -19,34 +19,7 @@ import lss_const as lssc
 # for contact sensor's digital input
 import RPi.GPIO as GPIO
 import time
-
-
-####### example code for GPIO input ######
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(13,GPIO.OUT) # board pin 10
-try:
-	while True:
-		'''
-		time.sleep(0.5)
-		print("Reading...")
-		GPIO.output(16,1)
-		print("on")
-		time.sleep(0.5)
-		GPIO.output(16,0)
-		print("off")
-		'''	
-		time.sleep(0.5)
-		if GPIO.input(13):
-			print("off")
-		else:
-			print("on")
-except KeyboardInterrupt:
-	print("STOP")
-finally:
-	print("cleanup")
-	GPIO.cleanup() # you MUST do GPIO cleanup whenever main.py ends
-	sys.exit(0)
-##### end of GPIO input exmaple ##############
+import contact_sensor as contact_sensor
 
 # for our arm's movement
 from motion import motion
@@ -74,6 +47,12 @@ def clear():
     else: 
         _ = system('clear') 
 
+# Setup GPIO input reading
+sensor_pin = 13
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(sensor_pin,GPIO.OUT) # board pin 13
+cs = contact_sensor(GPIO, sensor_pin)
+
 #Main loop
 mt.start()
 exit = 0
@@ -85,9 +64,13 @@ while(exit == 0):
 	clear()
 	mt.printLocation()
 	time.sleep(.5)
+	current_step = 1 + (counter % max_steps)
 	
+	# check if the contact sensor reading is as expected
+	cs.validateStep(current_step)
+
 	if(mt.holdOn() == False):
-		mt.stepPosition(1 + (counter % max_steps))
+		mt.stepPosition(current_step)
 		counter += 1
 	if (counter >= max_steps):
 		exit = 1
