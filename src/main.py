@@ -66,10 +66,12 @@ while(exit == 0):
 	time.sleep(.5)
 	current_step = 1 + (counter % max_steps)
 	
-	# check if the contact sensor reading is as expected
-	cs.validateStep(current_step)
+	
 
 	if(mt.holdOn() == False):
+		# check if the contact sensor reading is as expected
+		cs.validateStep(current_step) # will raise AssertionError and terminate program if GPIO is not as expected
+
 		mt.stepPosition(current_step)
 		counter += 1
 	if (counter >= max_steps):
