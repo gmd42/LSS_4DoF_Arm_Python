@@ -19,7 +19,7 @@ import lss_const as lssc
 # for contact sensor's digital input
 import RPi.GPIO as GPIO
 import time
-import contact_sensor as contact_sensor
+from contact_sensor import contact_sensor
 
 # for our arm's movement
 from motion import motion
