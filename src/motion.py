@@ -14,21 +14,35 @@ class motion():
 			lss.LSS(i).setMaxSpeed(30)
 			lss.LSS(i).setAngularAcceleration(10)
 		self.positions =[\
+		#Far above infeed
 		[-855, 40, 420, 10, 0],\
+		#Close to infeed
 		[None, 132, 357, None, 0],\
+		#grab stent
 		[None, 205, 314, None, 0],\
+		#back up
 		[None, 40, 420, None, 0],\
+		#Mandrel far
 		[63, 40, 350, 20, 0],\
+		#Mandrel slam
 		[121, 40, 350, 60, 5],\
+		#Close pull off
 		[None, -60, 425, 60, 0],\
+		#Perform laser
 		[None, -500, 0, None, 5],\
+		#Close approach
 		[None, -60, 425, 60, 0],\
+		#Grab
 		[121, 40, 353, 60, 5],\
+		#Close off mandrel
 		[63, 40, 360, 20, 0],\
+		#Clear mandrel
 		[63, -210, 613, 20, 0],\
+		#
 		[870, -210, 613, 20, 0],\
 		[870, 41, 320, 32, 0],\
 		[975, 41, 320, 32, 0],\
+		#Let go
 		[975, -130, 450, 32, 0]]\
 		
 
@@ -62,7 +76,7 @@ class motion():
 			for x in self.all_Servo:
 				try:
 					z = int(x.getSpeedPulse())
-				except Exception, e:
+				except Exception:
 					return True
 				if (abs(z) > 1):
 					return True
