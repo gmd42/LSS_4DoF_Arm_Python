@@ -84,6 +84,7 @@ while(exit == 0):
 		except AssertionError as e:
 			while True:
 				mt.blink()
+				print(cs.currentReading())
 		mt.stepPosition(current_step)
 		counter += 1
 	if (counter >= max_steps):
