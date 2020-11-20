@@ -4,7 +4,10 @@ from tkinter import ttk
 import lss
 import lss_const as lssc
 
-"""
+# for our arm's movement
+from motion import motion
+
+
 # Constants
 #CST_LSS_Port = "/dev/ttyUSB0"		# For Linux/Unix platforms
 CST_LSS_Port = "COM3"				# For windows platforms
@@ -15,33 +18,55 @@ lss.initBus(CST_LSS_Port, CST_LSS_Baud)
 
 # Create LSS objects
 mt  = motion(lss)
-"""
+
 def goLimp():
-	pass
-	#mt.estop()
+	mt.estop()
 
 def holdPosition():
-	pass
-	#mt.freeze()
+	mt.freeze()
 
 def Refresher():
-	#current_base.set(lss.getPosition(1))
-	#current_shoulder.set(lss.getPosition(2))
-	#current_elbow.set(lss.getPosition(3))
-	#current_wrist.set(lss.getPosition(4))
-	root.after(100, Refresher)
+	current_base.set(lss.LSS(1).getPosition())
+	current_shoulder.set(lss.LSS(2).getPosition())
+	current_elbow.set(lss.LSS(3).getPosition())
+	current_wrist.set(lss.LSS(4).getPosition())
+	root.after(50, Refresher)
 
 def setBase():
+	lss.LSS(1).move(base_angle.get())
+
+def plus5Base():
+	pass
+
+def minus5Base():
+	pass
+
+def plus5Shoulder():
+	pass
+
+def minus5Shoulder():
+	pass
+
+def plus5Elbow():
+	pass
+
+def minus5Elbow():
+	pass
+
+def plus5Wrist():
+	pass
+
+def minus5Wrist():
 	pass
 
 def setShoulder():
-	pass
+	lss.LSS(2).move(shoulder_angle.get())
 
 def setElbow():
-	pass
+	lss.LSS(3).move(elbow_angle.get())
 
 def setWrist():
-	pass
+	lss.LSS(4).move(wrist_angle.get())
 
 root = Tk()
 root.title("LSS Arm Position Finder")
@@ -84,15 +109,23 @@ wrist_entry.grid(column=1, row=8, sticky=(E), padx=5, pady=5)
 
 
 #Command Buttons
-ttk.Button(mainframe, text="Limp", command=goLimp).grid(column=4, row=2, padx=5, pady=5)
-ttk.Button(mainframe, text="Hold", command=holdPosition).grid(column=4, row=4, padx=5, pady=5)
+ttk.Button(mainframe, text="Limp", command=goLimp).grid(column=5, row=2, padx=5, pady=5)
+ttk.Button(mainframe, text="Hold", command=holdPosition).grid(column=5, row=4, padx=5, pady=5)
 ttk.Button(mainframe, text="Set Base", command=setBase).grid(column=2, row=2, padx=5, pady=5)
+ttk.Button(mainframe, width=3,text="+5", command=plus5Base).grid(column=3, row=2, padx=(5,0), pady=5)
+ttk.Button(mainframe, width=3,text="-5", command=minus5Base).grid(column=4, row=2, padx=(0,5), pady=5)
 ttk.Button(mainframe, text="Set Shoulder", command=setShoulder).grid(column=2, row=4, padx=5, pady=5)
+ttk.Button(mainframe, width=3,text="+5", command=plus5Shoulder).grid(column=3, row=4, padx=(5,0), pady=5)
+ttk.Button(mainframe, width=3,text="-5", command=minus5Shoulder).grid(column=4, row=4, padx=(0,5), pady=5)
 ttk.Button(mainframe, text="Set Elbow", command=setElbow).grid(column=2, row=6, padx=5, pady=5)
+ttk.Button(mainframe, width=3,text="+5", command=plus5Elbow).grid(column=3, row=6, padx=(5,0), pady=5)
+ttk.Button(mainframe, width=3,text="-5", command=minus5Elbow).grid(column=4, row=6, padx=(0,5), pady=5)
 ttk.Button(mainframe, text="Set Wrist", command=setWrist).grid(column=2, row=8, padx=5, pady=5)
+ttk.Button(mainframe, width=3,text="+5", command=plus5Wrist).grid(column=3, row=8, padx=(5,0), pady=5)
+ttk.Button(mainframe, width=3,text="-5", command=minus5Wrist).grid(column=4, row=8, padx=(0,5), pady=5)
 
 base_entry.focus()
-root.bind("<Escape>", goLimp)
-root.bind("<Return>", holdPosition)
+root.bind("<Escape>", goLimp())
+root.bind("<Return>", holdPosition())
 Refresher()
 root.mainloop()
