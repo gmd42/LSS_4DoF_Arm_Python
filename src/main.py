@@ -24,13 +24,13 @@ from contact_sensor import contact_sensor
 from motion import motion
 
  # for windows 
-    if name == 'nt':
-    	CST_LSS_Port = "COM3"
+if name == 'nt':
+    CST_LSS_Port = "COM3"
     		
  
     # for mac and linux(here, os.name is 'posix') 
-    else: 
-    	CST_LSS_Port = "/dev/ttyUSB0"
+else: 
+    CST_LSS_Port = "/dev/ttyUSB0"
 # Constants
 #CST_LSS_Port = "/dev/ttyUSB0"		# For Linux/Unix platforms
 # CST_LSS_Port = "COM1"				# For windows platforms
