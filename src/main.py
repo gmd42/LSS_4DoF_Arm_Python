@@ -8,7 +8,6 @@
 import time
 import sys
 import serial
-import pynput
 
 from os import system, name 
 
@@ -24,9 +23,16 @@ from contact_sensor import contact_sensor
 # for our arm's movement
 from motion import motion
 
-
+ # for windows 
+    if name == 'nt':
+    	CST_LSS_Port = "COM3"
+    		
+ 
+    # for mac and linux(here, os.name is 'posix') 
+    else: 
+    	CST_LSS_Port = "/dev/ttyUSB0"
 # Constants
-CST_LSS_Port = "/dev/ttyUSB0"		# For Linux/Unix platforms
+#CST_LSS_Port = "/dev/ttyUSB0"		# For Linux/Unix platforms
 # CST_LSS_Port = "COM1"				# For windows platforms
 CST_LSS_Baud = lssc.LSS_DefaultBaud
 
