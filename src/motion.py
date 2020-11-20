@@ -38,9 +38,9 @@ class motion():
 			x.move(0)
 
 	def blink(self):
-			lss.LSS(4).setColorLED(0)
+			self.lss.LSS(4).setColorLED(0)
 			time.sleep(.5)
-			lss.LSS(4).setColorLED(1)
+			self.lss.LSS(4).setColorLED(1)
 	#Make all servos limp
 	def estop(self):
 		for x in self.all_Servo:
