@@ -60,7 +60,11 @@ class motion():
 	#Returns true if the arm is moving
 	def holdOn(self):
 			for x in self.all_Servo:
-				if (abs(int(x.getSpeedPulse())) > 1):
+				try:
+					z = int(x.getSpeedPulse())
+				except Exception, e:
+					return True
+				if (abs() > 1):
 					return True
 			return False
 
