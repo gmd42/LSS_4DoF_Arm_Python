@@ -70,7 +70,9 @@ max_steps = mt.getNumPositions()
 while(exit == 0):
 	clear()
 	mt.printLocation()
+	print(cs.currentReading())
 	time.sleep(.5)
+	"""
 	current_step = 1 + (counter % max_steps)
 	
 	
@@ -83,7 +85,7 @@ while(exit == 0):
 		counter += 1
 	if (counter >= max_steps):
 		exit = 1
-	
+	"""
 #mt.end()
 # Destroy the bus
 #mt.lss.closeBus()
