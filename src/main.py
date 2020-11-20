@@ -54,6 +54,7 @@ def clear():
         _ = system('clear') 
 
 # Setup GPIO input reading
+GPIO.cleanup()
 sensor_pin = 18
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(sensor_pin,GPIO.OUT) # board pin 13
