@@ -7,11 +7,6 @@ class contact_sensor():
 	def validateStep(self, stepNumber):
 			assert self.GPIO.input(self.sensor_pin) == self.validateList[stepNumber]
 		
-				
-
-
-
-
 	def currentReading(self):
 		if self.GPIO.input(self.sensor_pin):
 			print("Stent is gripped")
