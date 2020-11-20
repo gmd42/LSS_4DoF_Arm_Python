@@ -82,7 +82,7 @@ while(exit == 0):
 		try:
 			cs.validateStep(current_step) # will raise AssertionError and terminate program if GPIO is not as expected
 		except AssertionError as e:
-			while true:
+			while True:
 				mt.blink()
 		mt.stepPosition(current_step)
 		counter += 1
