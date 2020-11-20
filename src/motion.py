@@ -64,7 +64,7 @@ class motion():
 					z = int(x.getSpeedPulse())
 				except Exception, e:
 					return True
-				if (abs() > 1):
+				if (abs(z) > 1):
 					return True
 			return False
 
