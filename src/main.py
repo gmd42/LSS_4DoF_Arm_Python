@@ -72,20 +72,22 @@ while(exit == 0):
 	mt.printLocation()
 	print(cs.currentReading())
 	time.sleep(.5)
-	"""
+	
 	current_step = 1 + (counter % max_steps)
 	
 	
 
 	if(mt.holdOn() == False):
 		# check if the contact sensor reading is as expected
-		cs.validateStep(current_step) # will raise AssertionError and terminate program if GPIO is not as expected
-
+		try:
+			cs.validateStep(current_step) # will raise AssertionError and terminate program if GPIO is not as expected
+		except AssertionError as e:
+			while true:
+				mt.blink()
 		mt.stepPosition(current_step)
 		counter += 1
 	if (counter >= max_steps):
 		exit = 1
-	"""
 #mt.end()
 # Destroy the bus
 #mt.lss.closeBus()

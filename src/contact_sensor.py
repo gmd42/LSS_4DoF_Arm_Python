@@ -5,7 +5,12 @@ class contact_sensor():
 		self.validateList = [0 for _ in range(50)] # fill in with expected readings of sensor for every step
 
 	def validateStep(self, stepNumber):
-		assert self.GPIO.input(self.sensor_pin) == self.validateList[stepNumber]
+			assert self.GPIO.input(self.sensor_pin) == self.validateList[stepNumber]
+		
+				
+
+
+
 
 	def currentReading(self):
 		if self.GPIO.input(self.sensor_pin):
