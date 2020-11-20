@@ -15,7 +15,7 @@ class motion():
 			lss.LSS(i).setAngularAcceleration(10)
 		self.positions =[\
 		#Far above infeed
-		[-855, 40, 420, 10, 0],\
+		[-845, 40, 420, 10, 0],\
 		#Close to infeed
 		[None, 132, 357, None, 0],\
 		#grab stent
