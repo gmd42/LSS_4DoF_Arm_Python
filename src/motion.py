@@ -31,7 +31,7 @@ class motion():
 		#Perform laser
 		[None, -500, 0, None, 5],\
 		#Close approach
-		[None, -60, 425, 60, 0],\
+		[None, -70, 425, 60, 0],\
 		#Grab
 		[121, 40, 353, 60, 5],\
 		#Close off mandrel
