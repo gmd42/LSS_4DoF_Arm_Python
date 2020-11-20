@@ -37,7 +37,7 @@ class motion():
 		for x in self.all_Servo:
 			x.move(0)
 
-	def blink(self)
+	def blink(self):
 		for x in self.all_Servo:
 			x.setColorLED(0)
 			time.sleep(.5)
